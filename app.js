@@ -28,11 +28,10 @@ const albums = {
     tracks: [
       { n: "01", title: "Я растворился в твоей душе", file: "01-ya-rastvorilsya-v-tvoey-dushe.mp3" },
       { n: "02", title: "Предчувствие", file: "02-predchuvstvie.mp3" },
-      { n: "03", title: "Божественное очарование", file: "03-bozhestvennoe-ocharovanie.mp3" },
-      { n: "04", title: "Интриганка", file: "04-intriganka.mp3" },
-      { n: "05", title: "Лето", file: "05-leto.mp3" },
-      { n: "06", title: "Добавьте название трека", file: "06-track.mp3" },
-      { n: "07", title: "Добавьте название трека", file: "07-track.mp3" }
+      { n: "03", title: "Интриганка", file: "04-intriganka.mp3" },
+      { n: "04", title: "Лето", file: "05-leto.mp3" },
+      
+      
     ]
   },
   "medovye-melodii": {
@@ -181,12 +180,13 @@ function homeView(){
     <section class="hero">
       <article class="hero-main glass">
         <div class="hero-content">
-          <div class="eyebrow">Главный релиз 2025 • премиальная версия сайта • непрерывное воспроизведение</div>
-          <h1>Любовь — главный альбом сайта</h1>
+          <h1>Любовь — откровение души</h1>
           <p>
-            Здесь каждый альбом ощущается как собственная страница с уникальным характером,
-            но музыка при этом не прерывается, пока слушатель перемещается по сайту.
-          </p>
+Это не просто романтика — это музыка, рождённая из настоящей любви,
+из самой глубины двух душ, нашедших друг друга вопреки всему.
+Это не просто звук — это откровение,
+это чувство, которое сильнее слов и времени.
+</p>
           <div class="hero-actions">
             <button class="cta nav-route" data-route="album-lyubov">Слушать «Любовь»</button>
             <button class="ghost-btn nav-route" data-route="about">Об авторе</button>
@@ -244,16 +244,31 @@ function aboutView(){
         </div>
 
         <div class="about-text">
-          <p><strong>Луис Фадер</strong> — композитор, создающий инструментальную музыку с мелодическим движением,
-          яркой образностью и кинематографической атмосферой.</p>
 
-          <p>Эта версия сайта построена по профессиональной логике: альбомы воспринимаются как отдельные страницы
-          благодаря собственным темам, цветам и настроению, но технически сайт остаётся единым приложением.
-          Поэтому музыка не обрывается при навигации.</p>
+<p>
+Луис Фадер — композитор и продюсер, работающий в жанре инструментальной и мелодической музыки.
+Его творчество сочетает выразительные мелодии, атмосферные текстуры и кинематографическое звучание,
+создавая эмоциональные музыкальные пространства.
+</p>
 
-          <p>Фото автора: <code>assets/images/luis-fader-photo.jpg</code><br>
-          Фон первого экрана: <code>assets/images/hero-bg.jpg</code></p>
-        </div>
+<p>
+В своих работах Луис Фадер выступает не только как композитор, но и как продюсер и исполнитель,
+используя синтезаторы и современные методы аранжировки для создания цельного авторского звука.
+</p>
+
+<p>
+Музыка Луиса Фадера отличается яркой образностью и эмоциональной глубиной:
+в ней сочетаются романтика, напряжение и ощущение движения, что делает каждую композицию
+похожей на отдельную историю или сцену.
+</p>
+
+<p>
+Этот сайт создан как единое музыкальное пространство: слушатель может свободно
+перемещаться между альбомами, не прерывая воспроизведение, погружаясь в музыку
+как в непрерывное эмоциональное путешествие.
+</p>
+
+</div>
       </div>
     </section>
   `;
@@ -270,13 +285,30 @@ function albumView(album){
         <aside class="album-sidebar">
           <div class="album-cover-large ${album.coverClass}"></div>
 
-          <div class="side-panel">
-            <strong>Файлы альбома</strong>
-            <ul class="instruction-list">
-              <li>Обложка: <code>assets/covers/${album.id}.jpg</code></li>
-              <li>Аудио: <code>${album.audioFolder}</code></li>
-            </ul>
-          </div>
+          ${album.id === "predchuvstvie" ? `
+  <div class="side-panel">
+    <strong>О проекте</strong>
+    <p>
+      Этот альбом — саундтрек к роману «Предчувствие» Луиса Фадера,
+      опубликованному на Ridero.
+      Музыка передаёт атмосферу истории, где после глобальной катастрофы
+      переплетаются надежда, борьба и человеческие чувства.
+    </p>
+    <div class="card-actions" style="margin-top:12px;">
+      <a class="ghost-btn" href="https://ridero.ru/books/predchuvstvie_5/" target="_blank">
+        Читать роман
+      </a>
+    </div>
+  </div>
+` : `
+  <div class="side-panel">
+    <strong>Файлы альбома</strong>
+    <ul class="instruction-list">
+      <li>Обложка: <code>assets/covers/${album.id}.jpg</code></li>
+      <li>Аудио: <code>${album.audioFolder}</code></li>
+    </ul>
+  </div>
+`}
 
           <div class="side-panel">
             <strong>Управление альбомом</strong>
@@ -306,11 +338,8 @@ function albumView(album){
               </div>
 
               <div class="track-controls">
-                <button class="track-btn primary play-track" data-album="${album.id}" data-index="${idx}">▶ Слушать</button>
-                <button class="track-btn secondary add-track" data-album="${album.id}" data-index="${idx}">Добавить в очередь</button>
-              </div>
-
-              <div class="track-file">Файл: <code>${album.audioFolder}${track.file}</code></div>
+  <button class="track-btn primary play-track" data-album="${album.id}" data-index="${idx}">▶ Слушать</button>
+</div>
             </article>
           `).join("")}
         </div>
@@ -539,3 +568,97 @@ restoreState();
 if(!location.hash) location.hash = "#home";
 render();
 updatePlayer();
+
+
+function enableDraggablePlayer(){
+  const dock = document.getElementById("playerDock");
+  if(!dock) return;
+
+  let startX = 0;
+  let startY = 0;
+  let startLeft = 0;
+  let startTop = 0;
+  let dragging = false;
+
+  const saved = localStorage.getItem("luis-fader-player-position");
+  if(saved){
+    try{
+      const pos = JSON.parse(saved);
+      if(typeof pos.left === "number" && typeof pos.top === "number"){
+        dock.style.left = pos.left + "px";
+        dock.style.top = pos.top + "px";
+        dock.style.right = "auto";
+      }
+    }catch(e){}
+  }
+
+  function clampPosition(left, top){
+    const pad = 8;
+    const maxLeft = Math.max(pad, window.innerWidth - dock.offsetWidth - pad);
+    const maxTop = Math.max(pad, window.innerHeight - dock.offsetHeight - pad);
+    return {
+      left: Math.min(Math.max(pad, left), maxLeft),
+      top: Math.min(Math.max(pad, top), maxTop)
+    };
+  }
+
+  function savePosition(left, top){
+    localStorage.setItem("luis-fader-player-position", JSON.stringify({ left, top }));
+  }
+
+  function onPointerMove(e){
+    if(!dragging) return;
+    const next = clampPosition(
+      startLeft + (e.clientX - startX),
+      startTop + (e.clientY - startY)
+    );
+    dock.style.left = next.left + "px";
+    dock.style.top = next.top + "px";
+    dock.style.right = "auto";
+  }
+
+  function onPointerUp(){
+    if(!dragging) return;
+    dragging = false;
+    dock.classList.remove("dragging");
+    const rect = dock.getBoundingClientRect();
+    savePosition(rect.left, rect.top);
+    window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("pointerup", onPointerUp);
+  }
+
+  function onPointerDown(e){
+    const isHandle = e.target.closest(".player-top") || e.target.closest(".player-cover");
+    const isInteractive = e.target.closest("button, input, audio");
+    if(!isHandle || isInteractive) return;
+
+    const rect = dock.getBoundingClientRect();
+    dragging = true;
+    dock.classList.add("dragging");
+    startX = e.clientX;
+    startY = e.clientY;
+    startLeft = rect.left;
+    startTop = rect.top;
+
+    dock.style.left = rect.left + "px";
+    dock.style.top = rect.top + "px";
+    dock.style.right = "auto";
+
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+  }
+
+  dock.addEventListener("pointerdown", onPointerDown);
+
+  window.addEventListener("resize", () => {
+    const rect = dock.getBoundingClientRect();
+    const next = clampPosition(rect.left, rect.top);
+    dock.style.left = next.left + "px";
+    dock.style.top = next.top + "px";
+    dock.style.right = "auto";
+    savePosition(next.left, next.top);
+  });
+}
+
+enableDraggablePlayer();
+

@@ -286,19 +286,6 @@ a{color:inherit;text-decoration:none}
   aspect-ratio:1/1;
   border-radius:26px;
 }
-.album-cover::after,.album-cover-large::after{
-  content:"ЗАМЕНИТЕ ОБЛОЖКУ";
-  position:absolute;
-  left:12px;
-  bottom:12px;
-  padding:7px 10px;
-  border-radius:999px;
-  font-size:.76rem;
-  background:rgba(5,10,18,.78);
-  border:1px solid rgba(255,255,255,.08);
-  color:#dbe8f8;
-  letter-spacing:.05em;
-}
 .cover-lyubov{background-image:url('assets/covers/lyubov.jpg')}
 .cover-predchuvstvie{background-image:url('assets/covers/predchuvstvie.jpg')}
 .cover-medovye-melodii{background-image:url('assets/covers/medovye-melodii.jpg')}
@@ -594,3 +581,19 @@ code{
 }
   .album-shell,.about-box{padding:20px}
 }
+
+
+.player{
+  touch-action:none;
+}
+.player-top,
+.player-cover{
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.player.dragging .player-top,
+.player.dragging .player-cover{
+  cursor:grabbing;
+}
+
