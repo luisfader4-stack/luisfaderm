@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Луис Фадер — музыка</title>
+  <meta name="description" content="Авторский музыкальный сайт Луиса Фадера с непрерывным плеером и уникальным дизайном для каждого альбома." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-layer bg-a"></div>
+  <div class="bg-layer bg-b"></div>
+
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <button class="brand nav-route" data-route="home" aria-label="На главную">
+        <span class="brand-mark">♫</span>
+        <span class="brand-text">ЛУИС ФАДЕР</span>
+      </button>
+
+      <nav class="nav" aria-label="Навигация">
+        <button class="nav-route" data-route="home">Главная</button>
+        <button class="nav-route" data-route="about">Об авторе</button>
+        <button class="nav-route" data-route="album-lyubov">Любовь</button>
+        <button class="nav-route" data-route="album-predchuvstvie">Предчувствие</button>
+        <button class="nav-route" data-route="album-medovye-melodii">Медовые мелодии</button>
+        <button class="nav-route" data-route="album-natalya">Наталья</button>
+        <button class="nav-route" data-route="album-rezonans-lyubvi">Резонанс любви</button>
+        <button class="nav-route" data-route="album-severnaya-lyubov">Северная любовь</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <aside class="player" id="playerDock" aria-live="polite">
+    <div class="player-top">
+      <div class="player-meta">
+        <div class="player-label">Сейчас играет</div>
+        <div class="player-track" id="playerTrack">Ничего не выбрано</div>
+        <div class="player-album" id="playerAlbum">Выберите альбом</div>
+      </div>
+      <button class="player-icon" id="togglePlayer" aria-label="Свернуть плеер">—</button>
+    </div>
+
+    <div class="player-cover" id="playerCover">
+      <span>ОБЛОЖКА</span>
+    </div>
+
+    <audio id="audio" preload="metadata"></audio>
+
+    <div class="player-progress">
+      <span id="currentTime">0:00</span>
+      <input id="seek" type="range" min="0" max="100" value="0" />
+      <span id="durationTime">0:00</span>
+    </div>
+
+    <div class="player-controls">
+      <button class="player-icon" id="prevBtn" aria-label="Предыдущий">⟨</button>
+      <button class="player-main-btn" id="playPauseBtn" aria-label="Пуск или пауза">▶</button>
+      <button class="player-icon" id="nextBtn" aria-label="Следующий">⟩</button>
+    </div>
+
+    <div class="player-actions">
+      <button class="mini-btn" id="stopBtn">Стоп</button>
+      <button class="mini-btn" id="openAlbumBtn">Открыть альбом</button>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

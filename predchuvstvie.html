@@ -1,0 +1,477 @@
+<html lang="ru"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Предчувствие — Луис Фадер</title>
+  <meta name="description" content="Альбом Луиса Фадера Предчувствие.">
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: rgba(17, 29, 49, 0.82);
+      --line: rgba(173, 213, 255, 0.16);
+      --text: #edf5ff;
+      --muted: #a9bdd7;
+      --accent: #87c5ff;
+      --shadow: 0 24px 80px rgba(0,0,0,0.45);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(130, 177, 255, 0.20), transparent 30%),
+        radial-gradient(circle at 85% 18%, rgba(214, 169, 255, 0.14), transparent 22%),
+        linear-gradient(180deg, #050c16 0%, #08111d 35%, #091828 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 34rem;
+      height: 34rem;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: 0.35;
+    }
+
+    body::before {
+      top: -12rem;
+      left: -8rem;
+      background: rgba(98, 167, 255, 0.18);
+    }
+
+    body::after {
+      right: -10rem;
+      bottom: -14rem;
+      background: rgba(193, 136, 255, 0.14);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 16px 0;
+      background: linear-gradient(180deg, rgba(4, 10, 18, 0.82), rgba(4, 10, 18, 0.35));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(135,197,255,0.28), rgba(210,169,255,0.22));
+      border: 1px solid rgba(255,255,255,0.12);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 12px 30px rgba(125,180,255,0.16);
+      font-size: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.08);
+      outline: none;
+    }
+
+    .page-hero {
+      padding: 40px 0 10px;
+    }
+
+    .page-hero-box {
+      padding: 28px;
+      border-radius: 28px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #dfeeff;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+    }
+
+    .page-title {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      margin: 14px 0 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .page-subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 54rem;
+    }
+
+    .section {
+      padding: 26px 0 40px;
+    }
+
+    .album-detail {
+      padding: 28px;
+      border-radius: 30px;
+    }
+
+    .album-detail-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .album-sidebar {
+      display: grid;
+      gap: 18px;
+    }
+
+    .album-cover-large {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 26px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(7,17,31,0.06), rgba(7,17,31,0.18)),
+        url('assets/covers/predchuvstvie.jpg') center/cover no-repeat;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.32);
+      position: relative;
+    }
+
+    .album-cover-large::after {
+      content: "ЗАМЕНИТЕ ОБЛОЖКУ";
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: rgba(5,10,18,0.78);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dbe8f8;
+      letter-spacing: 0.05em;
+    }
+
+    .panel,
+    .track,
+    .instruction-box {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .panel h3,
+    .instruction-box strong {
+      margin-top: 0;
+    }
+
+    .panel p,
+    .instruction-box p,
+    .instruction-box li {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .instruction-box ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .track-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .track-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .track-left {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .track-number {
+      color: var(--accent);
+      font-weight: 700;
+      min-width: 2.6rem;
+    }
+
+    .track-title {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+
+    .track-meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 6px;
+      border-radius: 12px;
+    }
+
+    code {
+      background: rgba(255,255,255,0.06);
+      padding: 3px 7px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 1080px) {
+      .album-detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .topbar-inner {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap {
+        width: min(var(--max), calc(100% - 18px));
+      }
+
+      .page-hero-box,
+      .album-detail {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .track-top {
+        flex-direction: column;
+      }
+
+      .track-meta {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body contenteditable="true">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">♫</span>
+        <span>ЛУИС ФАДЕР</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="medovye-melodii.html">Медовые мелодии</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <div class="page-hero-box glass">
+          <span class="back-link"><a href="index.html">← Назад на главную</a></span>
+          <h1 class="page-title">Предчувствие</h1>
+          <p class="page-subtitle">
+            Отдельная страница альбома с собственным оформлением, треклистом и встроенными плеерами.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <article class="album-detail glass">
+          <div class="album-detail-grid">
+            <aside class="album-sidebar">
+              <div class="album-cover-large"></div>
+
+              <div class="panel">
+                <h3>О релизе</h3>
+                <p>Este álbum es muy bueno. Me gusta mucho</p>
+              </div>
+
+              <div class="instruction-box">
+                <strong>Куда вставлять файлы</strong></div>
+            </aside>
+
+            <div>
+              <div class="track-list">
+                <article class="track">
+                  <div class="track-top">
+                    <div class="track-left">
+                      <div class="track-number">01</div>
+                      <h3 class="track-title">Я растворился в твоей душе</h3>
+                    </div>
+                    <div class="track-meta">MP3</div>
+                  </div>
+                  <audio controls="" preload="none">
+                    <source src="assets/audio/predchuvstvie/01-ya-rastvorilsya-v-tvoey-dushe.mp3" type="audio/mpeg">
+                  </audio>
+                </article>
+
+                <article class="track">
+                  <div class="track-top">
+                    <div class="track-left">
+                      <div class="track-number">02</div>
+                      <h3 class="track-title">Предчувствие</h3>
+                    </div>
+                    <div class="track-meta">MP3</div>
+                  </div>
+                  <audio controls="" preload="none">
+                    <source src="assets/audio/predchuvstvie/02-predchuvstvie.mp3" type="audio/mpeg">
+                  </audio>
+                </article>
+
+                <article class="track">
+                  <div class="track-top">
+                    <div class="track-left">
+                      <div class="track-number">03</div>
+                      <h3 class="track-title">Божественное очарование</h3>
+                    </div>
+                    <div class="track-meta">MP3</div>
+                  </div>
+                  <audio controls="" preload="none">
+                    <source src="assets/audio/predchuvstvie/03-bozhestvennoe-ocharovanie.mp3" type="audio/mpeg">
+                  </audio>
+                </article>
+
+                <article class="track">
+                  <div class="track-top">
+                    <div class="track-left">
+                      <div class="track-number">04</div>
+                      <h3 class="track-title">Интриганка</h3>
+                    </div>
+                    <div class="track-meta">MP3</div>
+                  </div>
+                  <audio controls="" preload="none">
+                    <source src="assets/audio/predchuvstvie/04-intriganka.mp3" type="audio/mpeg">
+                  </audio>
+                </article>
+
+                <article class="track">
+                  <div class="track-top">
+                    <div class="track-left">
+                      <div class="track-number">05</div>
+                      <h3 class="track-title">Лето</h3>
+                    </div>
+                    <div class="track-meta">MP3</div>
+                  </div>
+                  <audio controls="" preload="none">
+                    <source src="assets/audio/predchuvstvie/05-leto.mp3" type="audio/mpeg">
+                  </audio>
+                </article>
+
+                <article class="track">
+                  <div class="track-top">
+                    <div class="track-left">
+                      <div class="track-number">06</div>
+                      <h3 class="track-title">Добавьте название трека</h3>
+                    </div>
+                    <div class="track-meta">готово для замены</div>
+                  </div>
+                  <audio controls="" preload="none">
+                    <source src="assets/audio/predchuvstvie/06-track.mp3" type="audio/mpeg">
+                  </audio>
+                </article>
+
+                <article class="track">
+                  <div class="track-top">
+                    <div class="track-left">
+                      <div class="track-number">07</div>
+                      <h3 class="track-title">Добавьте название трека</h3>
+                    </div>
+                    <div class="track-meta">готово для замены</div>
+                  </div>
+                  <audio controls="" preload="none">
+                    <source src="assets/audio/predchuvstvie/07-track.mp3" type="audio/mpeg">
+                  </audio>
+                </article>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+</body></html>
