@@ -33,14 +33,14 @@
 
   <main id="app"></main>
 
-  <aside class="player" id="playerDock" aria-live="polite">
+  <aside class="player hidden" id="playerDock" aria-live="polite">
     <div class="player-top">
       <div class="player-meta">
         <div class="player-label">Сейчас играет</div>
         <div class="player-track" id="playerTrack">Ничего не выбрано</div>
         <div class="player-album" id="playerAlbum">Выберите альбом</div>
       </div>
-      <button class="player-icon" id="togglePlayer" aria-label="Свернуть плеер">—</button>
+      <button class="player-icon" id="closePlayer" aria-label="Свернуть плеер">✕</button>
     </div>
 
     <div class="player-cover" id="playerCover">
@@ -64,6 +64,12 @@
     <div class="player-actions">
       <button class="mini-btn" id="stopBtn">Стоп</button>
       <button class="mini-btn" id="openAlbumBtn">Открыть альбом</button>
+      <button class="mini-btn" id="togglePlaylistBtn">Список</button>
+    </div>
+
+    <div class="player-playlist hidden-playlist" id="playerPlaylistWrap">
+      <div class="player-playlist-title">Очередь воспроизведения</div>
+      <div class="player-playlist-list" id="playerPlaylist"></div>
     </div>
   </aside>
 

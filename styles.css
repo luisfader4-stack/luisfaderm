@@ -286,6 +286,19 @@ a{color:inherit;text-decoration:none}
   aspect-ratio:1/1;
   border-radius:26px;
 }
+.album-cover::after,.album-cover-large::after{
+  content:"ЗАМЕНИТЕ ОБЛОЖКУ";
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:.76rem;
+  background:rgba(5,10,18,.78);
+  border:1px solid rgba(255,255,255,.08);
+  color:#dbe8f8;
+  letter-spacing:.05em;
+}
 .cover-lyubov{background-image:url('assets/covers/lyubov.jpg')}
 .cover-predchuvstvie{background-image:url('assets/covers/predchuvstvie.jpg')}
 .cover-medovye-melodii{background-image:url('assets/covers/medovye-melodii.jpg')}
@@ -595,5 +608,57 @@ code{
 .player.dragging .player-top,
 .player.dragging .player-cover{
   cursor:grabbing;
+}
+
+
+.player.hidden { display:none; }
+
+
+.player-playlist{
+  margin-top:14px;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:12px;
+}
+.player-playlist.hidden-playlist{
+  display:none;
+}
+.player-playlist-title{
+  font-size:.82rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#bfd8f5;
+  margin-bottom:10px;
+}
+.player-playlist-list{
+  display:grid;
+  gap:8px;
+  max-height:220px;
+  overflow:auto;
+  padding-right:4px;
+}
+.player-playlist-item{
+  width:100%;
+  text-align:left;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  border-radius:14px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+.player-playlist-item.active{
+  background:linear-gradient(135deg, rgba(207,231,255,.22), rgba(224,199,255,.18));
+  border-color:rgba(255,255,255,.16);
+}
+.player-playlist-track{
+  display:block;
+  font-weight:700;
+  font-size:.92rem;
+}
+.player-playlist-album{
+  display:block;
+  font-size:.8rem;
+  color:var(--muted);
+  margin-top:2px;
 }
 

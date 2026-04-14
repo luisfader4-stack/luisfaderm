@@ -28,10 +28,11 @@ const albums = {
     tracks: [
       { n: "01", title: "Я растворился в твоей душе", file: "01-ya-rastvorilsya-v-tvoey-dushe.mp3" },
       { n: "02", title: "Предчувствие", file: "02-predchuvstvie.mp3" },
-      { n: "03", title: "Интриганка", file: "04-intriganka.mp3" },
-      { n: "04", title: "Лето", file: "05-leto.mp3" },
-      
-      
+      { n: "03", title: "Божественное очарование", file: "03-bozhestvennoe-ocharovanie.mp3" },
+      { n: "04", title: "Интриганка", file: "04-intriganka.mp3" },
+      { n: "05", title: "Лето", file: "05-leto.mp3" },
+      { n: "06", title: "Добавьте название трека", file: "06-track.mp3" },
+      { n: "07", title: "Добавьте название трека", file: "07-track.mp3" }
     ]
   },
   "medovye-melodii": {
@@ -116,8 +117,11 @@ const openAlbumBtn = document.getElementById("openAlbumBtn");
 const seek = document.getElementById("seek");
 const currentTimeEl = document.getElementById("currentTime");
 const durationTimeEl = document.getElementById("durationTime");
-const togglePlayer = document.getElementById("togglePlayer");
+const closePlayer = document.getElementById("closePlayer");
 const playerDock = document.getElementById("playerDock");
+const togglePlaylistBtn = document.getElementById("togglePlaylistBtn");
+const playerPlaylistWrap = document.getElementById("playerPlaylistWrap");
+const playerPlaylist = document.getElementById("playerPlaylist");
 
 const state = {
   queue: [],
@@ -180,13 +184,12 @@ function homeView(){
     <section class="hero">
       <article class="hero-main glass">
         <div class="hero-content">
-          <h1>Любовь — откровение души</h1>
+          <div class="eyebrow">Главный релиз 2025 • премиальная версия сайта • непрерывное воспроизведение</div>
+          <h1>Любовь — главный альбом сайта</h1>
           <p>
-Это не просто романтика — это музыка, рождённая из настоящей любви,
-из самой глубины двух душ, нашедших друг друга вопреки всему.
-Это не просто звук — это откровение,
-это чувство, которое сильнее слов и времени.
-</p>
+            Здесь каждый альбом ощущается как собственная страница с уникальным характером,
+            но музыка при этом не прерывается, пока слушатель перемещается по сайту.
+          </p>
           <div class="hero-actions">
             <button class="cta nav-route" data-route="album-lyubov">Слушать «Любовь»</button>
             <button class="ghost-btn nav-route" data-route="about">Об авторе</button>
@@ -244,31 +247,16 @@ function aboutView(){
         </div>
 
         <div class="about-text">
+          <p><strong>Луис Фадер</strong> — композитор, создающий инструментальную музыку с мелодическим движением,
+          яркой образностью и кинематографической атмосферой.</p>
 
-<p>
-Луис Фадер — композитор и продюсер, работающий в жанре инструментальной и мелодической музыки.
-Его творчество сочетает выразительные мелодии, атмосферные текстуры и кинематографическое звучание,
-создавая эмоциональные музыкальные пространства.
-</p>
+          <p>Эта версия сайта построена по профессиональной логике: альбомы воспринимаются как отдельные страницы
+          благодаря собственным темам, цветам и настроению, но технически сайт остаётся единым приложением.
+          Поэтому музыка не обрывается при навигации.</p>
 
-<p>
-В своих работах Луис Фадер выступает не только как композитор, но и как продюсер и исполнитель,
-используя синтезаторы и современные методы аранжировки для создания цельного авторского звука.
-</p>
-
-<p>
-Музыка Луиса Фадера отличается яркой образностью и эмоциональной глубиной:
-в ней сочетаются романтика, напряжение и ощущение движения, что делает каждую композицию
-похожей на отдельную историю или сцену.
-</p>
-
-<p>
-Этот сайт создан как единое музыкальное пространство: слушатель может свободно
-перемещаться между альбомами, не прерывая воспроизведение, погружаясь в музыку
-как в непрерывное эмоциональное путешествие.
-</p>
-
-</div>
+          <p>Фото автора: <code>assets/images/luis-fader-photo.jpg</code><br>
+          Фон первого экрана: <code>assets/images/hero-bg.jpg</code></p>
+        </div>
       </div>
     </section>
   `;
@@ -285,30 +273,13 @@ function albumView(album){
         <aside class="album-sidebar">
           <div class="album-cover-large ${album.coverClass}"></div>
 
-          ${album.id === "predchuvstvie" ? `
-  <div class="side-panel">
-    <strong>О проекте</strong>
-    <p>
-      Этот альбом — саундтрек к роману «Предчувствие» Луиса Фадера,
-      опубликованному на Ridero.
-      Музыка передаёт атмосферу истории, где после глобальной катастрофы
-      переплетаются надежда, борьба и человеческие чувства.
-    </p>
-    <div class="card-actions" style="margin-top:12px;">
-      <a class="ghost-btn" href="https://ridero.ru/books/predchuvstvie_5/" target="_blank">
-        Читать роман
-      </a>
-    </div>
-  </div>
-` : `
-  <div class="side-panel">
-    <strong>Файлы альбома</strong>
-    <ul class="instruction-list">
-      <li>Обложка: <code>assets/covers/${album.id}.jpg</code></li>
-      <li>Аудио: <code>${album.audioFolder}</code></li>
-    </ul>
-  </div>
-`}
+          <div class="side-panel">
+            <strong>Файлы альбома</strong>
+            <ul class="instruction-list">
+              <li>Обложка: <code>assets/covers/${album.id}.jpg</code></li>
+              <li>Аудио: <code>${album.audioFolder}</code></li>
+            </ul>
+          </div>
 
           <div class="side-panel">
             <strong>Управление альбомом</strong>
@@ -338,8 +309,11 @@ function albumView(album){
               </div>
 
               <div class="track-controls">
-  <button class="track-btn primary play-track" data-album="${album.id}" data-index="${idx}">▶ Слушать</button>
-</div>
+                <button class="track-btn primary play-track" data-album="${album.id}" data-index="${idx}">▶ Слушать</button>
+                <button class="track-btn secondary add-track" data-album="${album.id}" data-index="${idx}">Добавить в очередь</button>
+              </div>
+
+              <div class="track-file">Файл: <code>${album.audioFolder}${track.file}</code></div>
             </article>
           `).join("")}
         </div>
@@ -452,6 +426,7 @@ function loadCurrent(autoplay = false){
   if(!current) return;
 
   audio.src = current.src;
+  showPlayer();
   audio.load();
   updatePlayer();
   saveState();
@@ -467,6 +442,31 @@ function loadCurrent(autoplay = false){
   }
 }
 
+
+function renderPlaylist(){
+  if(!playerPlaylist) return;
+  playerPlaylist.innerHTML = "";
+
+  if(!state.queue.length){
+    playerPlaylist.innerHTML = '<div class="track-meta">Очередь пока пуста</div>';
+    return;
+  }
+
+  state.queue.forEach((item, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "player-playlist-item" + (idx === state.index ? " active" : "");
+    btn.innerHTML = `
+      <span class="player-playlist-track">${item.title}</span>
+      <span class="player-playlist-album">${item.albumTitle}</span>
+    `;
+    btn.addEventListener("click", () => {
+      state.index = idx;
+      loadCurrent(true);
+    });
+    playerPlaylist.appendChild(btn);
+  });
+}
+
 function updatePlayer(){
   const current = state.queue[state.index];
 
@@ -478,6 +478,7 @@ function updatePlayer(){
     currentTimeEl.textContent = "0:00";
     durationTimeEl.textContent = "0:00";
     seek.value = 0;
+    renderPlaylist();
     return;
   }
 
@@ -485,6 +486,7 @@ function updatePlayer(){
   playerAlbum.textContent = current.albumTitle;
   playerCover.innerHTML = `<span>${current.albumTitle}</span>`;
   playPauseBtn.textContent = audio.paused ? "▶" : "❚❚";
+  renderPlaylist();
 }
 
 function playPause(){
@@ -522,10 +524,12 @@ nextBtn.addEventListener("click", nextTrack);
 prevBtn.addEventListener("click", prevTrack);
 
 stopBtn.addEventListener("click", () => {
-  audio.pause();
-  audio.currentTime = 0;
-  updatePlayer();
-  saveState();
+  hidePlayerAndStop();
+});
+
+togglePlaylistBtn.addEventListener("click", () => {
+  playerPlaylistWrap.classList.toggle("hidden-playlist");
+  togglePlaylistBtn.textContent = playerPlaylistWrap.classList.contains("hidden-playlist") ? "Список" : "Скрыть";
 });
 
 openAlbumBtn.addEventListener("click", () => {
@@ -534,9 +538,8 @@ openAlbumBtn.addEventListener("click", () => {
   location.hash = `#album-${current.albumId}`;
 });
 
-togglePlayer.addEventListener("click", () => {
-  playerDock.classList.toggle("collapsed");
-  togglePlayer.textContent = playerDock.classList.contains("collapsed") ? "+" : "—";
+closePlayer.addEventListener("click", () => {
+  hidePlayerAndStop();
 });
 
 audio.addEventListener("timeupdate", () => {
@@ -662,3 +665,23 @@ function enableDraggablePlayer(){
 
 enableDraggablePlayer();
 
+
+function showPlayer(){
+  playerDock.classList.remove("hidden");
+}
+
+function hidePlayerAndStop(){
+  audio.pause();
+  audio.currentTime = 0;
+  audio.src = "";
+  state.queue = [];
+  state.queueAlbumId = null;
+  state.index = -1;
+  playerDock.classList.add("hidden");
+  if (playerPlaylistWrap) {
+    playerPlaylistWrap.classList.add("hidden-playlist");
+    if (togglePlaylistBtn) togglePlaylistBtn.textContent = "Список";
+  }
+  updatePlayer();
+  saveState();
+}
